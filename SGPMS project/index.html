@@ -1,0 +1,1869 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SGPMS – Smart Graduation Project Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>/* ════════════════════════════════════════
+   SGPMS – Smart Graduation Project Management System
+   Core Styles – Professional, Academic, Refined
+   ════════════════════════════════════════ */
+   
+
+:root {
+  --primary:      #1a3a5c;
+  --primary-dark: #0f2540;
+  --primary-mid:  #234b77;
+  --accent:       #c9a84c;
+  --accent-light: #e8c97a;
+  --bg:           #f4f6fa;
+  --surface:      #ffffff;
+  --border:       #e0e6ef;
+  --text:         #1a2233;
+  --muted:        #6b7a99;
+  --success:      #28a745;
+  --danger:       #dc3545;
+  --warning:      #ffc107;
+  --info:         #17a2b8;
+  --doc-accent:   #2e7d6e;
+  --admin-accent: #7c3aed;
+  --sidebar-w:    260px;
+  --radius:       14px;
+  --shadow:       0 4px 24px rgba(26,58,92,0.10);
+  --shadow-lg:    0 8px 40px rgba(26,58,92,0.16);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ── Pages ── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ════ LANDING ════ */
+.landing-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #0f2540 0%, #1a3a5c 50%, #0d3b6e 100%);
+  overflow: hidden;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.18;
+  animation: float 8s ease-in-out infinite;
+}
+.orb1 { width: 500px; height: 500px; background: #c9a84c; top: -100px; right: -80px; animation-delay: 0s; }
+.orb2 { width: 350px; height: 350px; background: #4a90d9; bottom: -60px; left: 10%; animation-delay: 3s; }
+.orb3 { width: 280px; height: 280px; background: #a8d4ff; top: 40%; left: 40%; animation-delay: 5s; }
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.landing-nav { position: relative; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.brand-text { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent) !important; letter-spacing: 1px; }
+
+.landing-hero { position: relative; z-index: 5; }
+
+.badge-pill {
+  display: inline-flex; align-items: center;
+  background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.4);
+  color: var(--accent-light); padding: 6px 16px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 900; color: #ffffff;
+  line-height: 1.12;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+}
+.hero-accent { color: var(--accent); }
+.hero-sub { color: rgba(255,255,255,0.72); font-size: 1.05rem; line-height: 1.7; max-width: 480px; }
+
+.btn-role {
+  background: var(--accent);
+  color: var(--primary-dark);
+  border: none; border-radius: 50px;
+  padding: 12px 24px; font-weight: 600; font-size: 0.9rem;
+  transition: all 0.25s; white-space: nowrap;
+}
+.btn-role:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.4); color: var(--primary-dark); }
+.btn-role-outline {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-role-outline:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.6); transform: translateY(-2px); }
+
+/* Hero card stack */
+.hero-right { justify-content: center; align-items: center; }
+.hero-card-stack { position: relative; width: 360px; height: 360px; }
+.hcard {
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(16px);
+  border-radius: 20px; padding: 20px 24px;
+  display: flex; align-items: center; gap: 12px;
+  color: #fff; font-weight: 500; font-size: 0.95rem;
+  transition: transform 0.3s;
+}
+.hcard i { font-size: 1.6rem; color: var(--accent); }
+.hcard:hover { transform: scale(1.04); }
+.hcard1 { top: 0;   left: 20px; width: 220px; animation: cardFloat 6s ease-in-out infinite; }
+.hcard2 { top: 90px; right: 0;  width: 210px; animation: cardFloat 6s ease-in-out infinite 1.5s; }
+.hcard3 { bottom: 90px; left: 0; width: 210px; animation: cardFloat 6s ease-in-out infinite 3s; }
+.hcard4 { bottom: 10px; right: 20px; width: 220px; animation: cardFloat 6s ease-in-out infinite 4.5s; }
+@keyframes cardFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ── Login Modal ── */
+.login-modal {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(10,25,45,0.7); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeIn 0.25s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.login-box {
+  background: var(--surface);
+  border-radius: 24px; padding: 48px 44px;
+  width: 100%; max-width: 440px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: slideUp 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.btn-close-login {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--bg); border: none; border-radius: 50%;
+  width: 36px; height: 36px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); transition: all 0.2s;
+}
+.btn-close-login:hover { background: var(--border); color: var(--text); }
+.login-icon-wrap {
+  width: 70px; height: 70px; border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: #fff; margin: 0 auto 20px;
+}
+.form-control { border-radius: 10px; border: 1.5px solid var(--border); padding: 12px 14px; }
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,58,92,0.12); }
+.btn-login {
+  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+  color: #fff; border: none; border-radius: 12px;
+  font-weight: 600; letter-spacing: 0.3px;
+  transition: all 0.25s;
+}
+.btn-login:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,58,92,0.35); color: #fff; }
+
+/* ════ SIDEBAR ════ */
+.sidebar {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--primary-dark);
+  display: flex; flex-direction: column;
+  z-index: 100; overflow-y: auto;
+  transition: transform 0.3s;
+}
+.sidebar-doctor { background: #1a3530; }
+.sidebar-admin   { background: #1e1040; }
+
+.sidebar-brand {
+  display: flex; align-items: center; gap: 10px;
+  padding: 24px 22px 16px;
+  font-family: var(--font-display);
+  font-size: 1.3rem; color: var(--accent);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sidebar-brand i { font-size: 1.5rem; }
+
+.sidebar-user {
+  display: flex; align-items: center; gap: 12px;
+  padding: 18px 18px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sidebar-user .fw-semibold { color: #fff; font-size: 0.9rem; }
+
+.avatar-sm {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: var(--accent); color: var(--primary-dark);
+  font-weight: 700; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+.sidebar-nav { padding: 8px 12px; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 11px 14px; border-radius: 10px;
+  color: rgba(255,255,255,0.6); text-decoration: none;
+  font-size: 0.9rem; font-weight: 500;
+  transition: all 0.2s; margin-bottom: 3px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.9); }
+.nav-item.active { background: var(--accent); color: var(--primary-dark); font-weight: 600; }
+.nav-item i { font-size: 1.05rem; width: 18px; }
+
+.sidebar-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.07); }
+.logout { color: rgba(255,100,100,0.75) !important; }
+.logout:hover { background: rgba(220,53,69,0.12) !important; color: #ff6b6b !important; }
+
+/* ════ MAIN CONTENT ════ */
+.main-content {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh; padding: 32px;
+  background: var(--bg);
+}
+
+/* ── Cards ── */
+.card-sgpms {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card-sgpms:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+/* ── Stat cards ── */
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 24px;
+  display: flex; align-items: center; gap: 20px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); }
+.stat-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.stat-icon.blue   { background: rgba(26,58,92,0.1); color: var(--primary); }
+.stat-icon.gold   { background: rgba(201,168,76,0.15); color: var(--accent); }
+.stat-icon.green  { background: rgba(40,167,69,0.12); color: var(--success); }
+.stat-icon.purple { background: rgba(124,58,237,0.12); color: var(--admin-accent); }
+.stat-icon.teal   { background: rgba(46,125,110,0.12); color: var(--doc-accent); }
+
+.stat-num { font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1; }
+.stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+/* ── Section header ── */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem; font-weight: 700; color: var(--primary);
+}
+
+/* ── Progress bar ── */
+.progress-sgpms {
+  height: 10px; border-radius: 10px;
+  background: var(--border);
+  overflow: hidden;
+}
+.progress-sgpms .bar {
+  height: 100%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Status badges ── */
+.badge-status {
+  padding: 5px 13px; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3px;
+}
+.badge-pending  { background: rgba(255,193,7,0.15); color: #a07800; }
+.badge-approved { background: rgba(40,167,69,0.15); color: #155724; }
+.badge-rejected { background: rgba(220,53,69,0.15); color: #721c24; }
+.badge-ongoing  { background: rgba(26,58,92,0.12); color: var(--primary); }
+
+/* ── Table ── */
+.table-sgpms { font-size: 0.9rem; }
+.table-sgpms thead th {
+  background: var(--bg); color: var(--muted);
+  font-weight: 600; font-size: 0.8rem; letter-spacing: 0.5px;
+  text-transform: uppercase; border-bottom: 2px solid var(--border);
+  padding: 12px 16px;
+}
+.table-sgpms td { padding: 14px 16px; vertical-align: middle; border-color: var(--border); }
+.table-sgpms tbody tr:hover { background: rgba(26,58,92,0.03); }
+
+/* ── Buttons ── */
+.btn-primary-sgpms {
+  background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+  color: #fff; border: none; border-radius: 10px;
+  padding: 10px 22px; font-weight: 600; font-size: 0.9rem;
+  transition: all 0.25s; cursor: pointer;
+}
+.btn-primary-sgpms:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(26,58,92,0.3); }
+
+.btn-accent {
+  background: var(--accent); color: var(--primary-dark);
+  border: none; border-radius: 10px;
+  padding: 10px 22px; font-weight: 600; font-size: 0.9rem;
+  transition: all 0.25s; cursor: pointer;
+}
+.btn-accent:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+.btn-sm-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  border: 1.5px solid var(--border); background: var(--surface);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s; color: var(--muted);
+  font-size: 0.9rem;
+}
+.btn-sm-icon:hover { background: var(--bg); color: var(--text); }
+
+/* ── Form ── */
+.form-label { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.form-select { border-radius: 10px; border: 1.5px solid var(--border); padding: 11px 14px; }
+.form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,58,92,0.12); }
+
+/* ── AI Chat ── */
+.ai-chat-wrap {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  height: 520px;
+  box-shadow: var(--shadow);
+}
+.ai-chat-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.ai-avatar {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.1rem;
+}
+.ai-chat-msgs {
+  flex: 1; overflow-y: auto; padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.msg { max-width: 80%; display: flex; flex-direction: column; gap: 4px; }
+.msg.user { align-self: flex-end; }
+.msg.bot  { align-self: flex-start; }
+.msg-bubble {
+  padding: 12px 16px; border-radius: 16px; font-size: 0.9rem; line-height: 1.55;
+}
+.msg.user .msg-bubble { background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+.msg.bot  .msg-bubble { background: var(--bg); color: var(--text); border-bottom-left-radius: 4px; }
+.msg-time { font-size: 0.72rem; color: var(--muted); padding: 0 4px; }
+.msg.user .msg-time { text-align: right; }
+.ai-chat-input {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 10px; align-items: center;
+}
+.ai-chat-input input {
+  flex: 1; border: 1.5px solid var(--border); border-radius: 50px;
+  padding: 11px 18px; font-size: 0.9rem; outline: none;
+  transition: border-color 0.2s;
+}
+.ai-chat-input input:focus { border-color: var(--primary); }
+.ai-send-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--primary); color: #fff; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; transition: all 0.2s;
+}
+.ai-send-btn:hover { background: var(--primary-mid); transform: scale(1.06); }
+
+/* ── Supervisor card ── */
+.sup-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.sup-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.sup-avatar {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff; font-size: 1.1rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sup-name { font-weight: 700; color: var(--text); font-size: 1rem; }
+.sup-area { font-size: 0.82rem; color: var(--muted); }
+.sup-cap-bar { height: 6px; border-radius: 6px; background: var(--border); overflow: hidden; }
+.sup-cap-bar .fill { height: 100%; border-radius: 6px; transition: width 0.8s; }
+.fill-low  { background: var(--success); }
+.fill-mid  { background: var(--warning); }
+.fill-high { background: var(--danger); }
+
+/* ── Meeting card ── */
+.meeting-card {
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius); padding: 18px 22px;
+  box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.meeting-time { font-size: 0.82rem; color: var(--muted); }
+.meeting-title { font-weight: 600; color: var(--text); }
+
+/* ── Page header ── */
+.page-header {
+  background: linear-gradient(120deg, var(--primary-dark), var(--primary));
+  color: #fff; border-radius: var(--radius);
+  padding: 28px 32px; margin-bottom: 28px;
+  position: relative; overflow: hidden;
+}
+.page-header::after {
+  content: '';
+  position: absolute; right: -30px; top: -40px;
+  width: 200px; height: 200px;
+  background: rgba(201,168,76,0.12); border-radius: 50%;
+}
+.page-header .page-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem; font-weight: 700; color: #fff;
+  position: relative; z-index: 1;
+}
+.page-header .page-sub { color: rgba(255,255,255,0.7); font-size: 0.9rem; position: relative; z-index: 1; }
+
+/* ── Toast ── */
+.toast-sgpms {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  font-size: 0.9rem; min-width: 280px;
+  animation: toastIn 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes toastIn {
+  from { transform: translateX(60px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── Notification dot ── */
+.notif-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); display: inline-block; margin-left: 4px;
+}
+
+/* ── File upload ── */
+.file-drop {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius); padding: 48px 24px;
+  text-align: center; cursor: pointer;
+  transition: all 0.25s;
+}
+.file-drop:hover { border-color: var(--primary); background: rgba(26,58,92,0.03); }
+.file-drop i { font-size: 2.5rem; color: var(--muted); display: block; margin-bottom: 12px; }
+
+/* ── Misc ── */
+.text-xs { font-size: 0.78rem; }
+.section-divider { height: 1px; background: var(--border); margin: 28px 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(26,58,92,0.08); color: var(--primary);
+  border-radius: 50px; padding: 4px 12px; font-size: 0.8rem; font-weight: 500;
+}
+.timeline-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.25);
+  flex-shrink: 0;
+}
+.timeline-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding-bottom: 18px; position: relative;
+}
+.timeline-item::before {
+  content: ''; position: absolute;
+  left: 5px; top: 18px; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.timeline-item:last-child::before { display: none; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* responsive */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .main-content { margin-left: 0; padding: 18px; }
+  .role-buttons { flex-direction: column; }
+}
+
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video stretches to fill the screen without stretching weirdly */
+  z-index: 0;
+}
+
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 37, 64, 0.75); /* A dark blue overlay that matches your theme */
+  z-index: 1;
+}
+/* Fix for mobile browser address bars */
+.min-vh-100 {
+  min-height: 100vh;
+  min-height: -webkit-fill-available; /* Safari fix */
+}
+
+html, body {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LANDING / LOGIN SCREEN ═══════════════ -->
+<div id="page-landing" class="page active">
+  <div class="landing-bg">
+    <video autoplay loop muted playsinline class="bg-video">
+      <source src="JUSTV.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+  </div>
+ <nav class="navbar navbar-dark px-4 py-3 landing-nav">
+    <span class="navbar-brand brand-text d-flex align-items-center">
+      <img src="JUST.png" alt="JUST" style="height: 44px; margin-right: 12px; background: #fff; border-radius: 50%; padding: 2px;">
+      SGPMS
+    </span>
+    <span class="text-white-50 middle">Jordan University of Science and Technology</span>
+  </nav>
+
+  <div class="landing-hero container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-6 hero-left">
+       
+        <h1 class="hero-title">Smart Graduation<br>Project Management<br><span class="hero-accent">System</span></h1>
+
+        <div class="d-flex gap-3 mt-5 role-buttons">
+          <button class="btn btn-role" onclick="showLogin('student')"><i class="bi bi-person-graduation me-2"></i>Student Login</button>
+          <button class="btn btn-role btn-role-outline" onclick="showLogin('doctor')"><i class="bi bi-person-badge me-2"></i>Doctor Login</button>
+          <button class="btn btn-role btn-role-outline" onclick="showLogin('admin')"><i class="bi bi-shield-check me-2"></i>Admin Login</button>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-right d-none d-lg-flex">
+        <div class="hero-card-stack">
+          <div class="hcard hcard1"><i class="bi bi-robot"></i><span>AI Project Ideas</span></div>
+          <div class="hcard hcard2"><i class="bi bi-people-fill"></i><span>Supervisor Matching</span></div>
+          <div class="hcard hcard3"><i class="bi bi-bar-chart-line-fill"></i><span>Progress Tracking</span></div>
+          <div class="hcard hcard4"><i class="bi bi-calendar-check"></i><span>Meeting Scheduler</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="login-modal" style="display:none">
+    <div class="login-box">
+      <button class="btn-close-login" onclick="closeLogin()"><i class="bi bi-x-lg"></i></button>
+      <div class="login-icon-wrap" id="login-icon"></div>
+      <h4 id="login-title" class="text-center mb-1"></h4>
+      <p class="text-center text-muted small mb-4" id="login-subtitle"></p>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">University ID</label>
+        <input type="text" id="login-id" class="form-control form-control-lg" placeholder="e.g. 202310001"/>
+      </div>
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Password</label>
+        <input type="password" id="login-pass" class="form-control form-control-lg" placeholder="••••••••"/>
+      </div>
+      <button class="btn btn-login w-100 btn-lg" onclick="doLogin()">Sign In <i class="bi bi-arrow-right ms-2"></i></button>
+      <p class="text-center mt-3 text-muted small">Demo: any credentials work</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ STUDENT DASHBOARD ═══════════════ -->
+<div id="page-student" class="page">
+  <div id="student-sidebar" class="sidebar">
+    <div class="sidebar-brand">
+      <img src="JUST.png" alt="JUST" style="height: 32px; margin-right: 10px; background: #fff; border-radius: 50%; padding: 2px;">
+      <span>SGPMS</span>
+    </div>
+    <div class="sidebar-user">
+      <div class="avatar-sm">AS</div>
+      <div>
+        <div class="fw-semibold">Ali Ahmed</div>
+        <div class="text-xs text-muted">Computer Info. Systems</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav mt-3">
+      <a href="#" class="nav-item active" onclick="showStudentSection('dashboard',this)"><i class="bi bi-grid-fill"></i>Dashboard</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('supervisors',this)"><i class="bi bi-people-fill"></i>Supervisors</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('register',this)"><i class="bi bi-file-earmark-plus-fill"></i>Register Project</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('progress',this)"><i class="bi bi-bar-chart-fill"></i>My Progress</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('meetings',this)"><i class="bi bi-camera-video-fill"></i>Meetings</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('ai',this)"><i class="bi bi-robot"></i>AI Assistant</a>
+      <a href="#" class="nav-item" onclick="showStudentSection('files',this)"><i class="bi bi-folder-fill"></i>My Files</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="#" onclick="logout()" class="nav-item logout"><i class="bi bi-box-arrow-left"></i>Logout</a>
+    </div>
+  </div>
+  <div class="main-content" id="student-content">
+    <!-- sections injected by JS -->
+  </div>
+</div>
+
+<!-- ═══════════════ DOCTOR DASHBOARD ═══════════════ -->
+<div id="page-doctor" class="page">
+  <div id="doctor-sidebar" class="sidebar sidebar-doctor">
+    <div class="sidebar-brand"><i class="bi bi-mortarboard-fill"></i><span>SGPMS</span></div>
+    <div class="sidebar-user">
+      <div class="avatar-sm" style="background:var(--doc-accent)">DA</div>
+      <div>
+        <div class="fw-semibold">Dr. Deya Al-Zoubi</div>
+        <div class="text-xs text-muted">Supervisor</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav mt-3">
+      <a href="#" class="nav-item active" onclick="showDoctorSection('dashboard',this)"><i class="bi bi-grid-fill"></i>Dashboard</a>
+      <a href="#" class="nav-item" onclick="showDoctorSection('groups',this)"><i class="bi bi-people-fill"></i>My Groups</a>
+      <a href="#" class="nav-item" onclick="showDoctorSection('meetings',this)"><i class="bi bi-calendar3"></i>Schedule Meetings</a>
+      <a href="#" class="nav-item" onclick="showDoctorSection('progress',this)"><i class="bi bi-pencil-square"></i>Update Progress</a>
+      <a href="#" class="nav-item" onclick="showDoctorSection('feedback',this)"><i class="bi bi-chat-dots-fill"></i>Feedback</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="#" onclick="logout()" class="nav-item logout"><i class="bi bi-box-arrow-left"></i>Logout</a>
+    </div>
+  </div>
+  <div class="main-content" id="doctor-content"></div>
+</div>
+
+<!-- ═══════════════ ADMIN DASHBOARD ═══════════════ -->
+<div id="page-admin" class="page">
+  <div id="admin-sidebar" class="sidebar sidebar-admin">
+    <div class="sidebar-brand"><i class="bi bi-mortarboard-fill"></i><span>SGPMS</span></div>
+    <div class="sidebar-user">
+      <div class="avatar-sm" style="background:var(--admin-accent)">DH</div>
+      <div>
+        <div class="fw-semibold">Dept. Head</div>
+        <div class="text-xs text-muted">Administrator</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav mt-3">
+      <a href="#" class="nav-item active" onclick="showAdminSection('dashboard',this)"><i class="bi bi-grid-fill"></i>Dashboard</a>
+      <a href="#" class="nav-item" onclick="showAdminSection('requests',this)"><i class="bi bi-inbox-fill"></i>Requests</a>
+      <a href="#" class="nav-item" onclick="showAdminSection('supervisors',this)"><i class="bi bi-person-badge-fill"></i>Supervisors</a>
+      <a href="#" class="nav-item" onclick="showAdminSection('students',this)"><i class="bi bi-person-lines-fill"></i>Students</a>
+      <a href="#" class="nav-item" onclick="showAdminSection('reports',this)"><i class="bi bi-file-earmark-bar-graph-fill"></i>Reports</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="#" onclick="logout()" class="nav-item logout"><i class="bi bi-box-arrow-left"></i>Logout</a>
+    </div>
+  </div>
+  <div class="main-content" id="admin-content"></div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index:9999"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>/* ════════════════════════════════════════
+   SGPMS – app.js  |  All dashboard logic
+   ════════════════════════════════════════ */
+
+/* ─── State ─── */
+let currentRole = null;
+
+/* ─── Data ─── */
+const supervisors = [
+  { id:1, name:'Dr. Deya Al-Zoubi',       initials:'DA', area:'AI & Machine Learning',      groups:3, max:5 },
+  { id:2, name:'Dr. Rami Hassan',          initials:'RH', area:'Software Engineering',        groups:4, max:5 },
+  { id:3, name:'Dr. Sara Khalil',          initials:'SK', area:'Data Science & Analytics',    groups:2, max:4 },
+  { id:4, name:'Dr. Omar Nasser',          initials:'ON', area:'Cybersecurity & Networks',    groups:5, max:5 },
+  { id:5, name:'Dr. Lina Al-Faouri',       initials:'LF', area:'Web & Mobile Development',   groups:1, max:4 },
+  { id:6, name:'Dr. Khaled Mansour',       initials:'KM', area:'Database Systems',            groups:3, max:5 },
+];
+
+const requests = [
+  { id:1, group:'Team Alpha',  project:'Smart Library System',    supervisor:'Dr. Deya Al-Zoubi', date:'2025-10-20', status:'approved' },
+  { id:2, group:'Team Beta',   project:'AI Health Monitor',        supervisor:'Dr. Sara Khalil',   date:'2025-10-22', status:'pending'  },
+  { id:3, group:'Team Gamma',  project:'Campus Navigation App',    supervisor:'Dr. Rami Hassan',   date:'2025-10-25', status:'rejected' },
+  { id:4, group:'Team Delta',  project:'E-Learning Platform',      supervisor:'Dr. Lina Al-Faouri',date:'2025-11-01', status:'pending'  },
+  { id:5, group:'Team Epsilon',project:'Blockchain Voting System', supervisor:'Dr. Omar Nasser',   date:'2025-11-05', status:'approved' },
+];
+
+const meetings = [
+  { id:1, title:'Weekly Progress Check',  date:'2025-12-08', time:'10:00 AM', link:'https://meet.google.com/abc-defg-hij', group:'Team Alpha' },
+  { id:2, title:'Midpoint Review',        date:'2025-12-15', time:'11:30 AM', link:'https://meet.google.com/xyz-uvwx-yz1', group:'Team Alpha' },
+  { id:3, title:'Final Presentation Prep',date:'2025-12-22', time:'02:00 PM', link:'https://meet.google.com/def-ghij-klm', group:'Team Alpha' },
+];
+
+const myProgress = { percent: 68, phase:'System Design', milestones:[
+  { label:'Project Registration', done:true,  date:'Oct 20' },
+  { label:'Literature Review',    done:true,  date:'Nov 04' },
+  { label:'Requirement Analysis', done:true,  date:'Nov 18' },
+  { label:'System Design',        done:false, date:'Dec 10' },
+  { label:'Implementation',       done:false, date:'Jan 15' },
+  { label:'Testing & Deployment', done:false, date:'Feb 05' },
+]};
+
+const doctorGroups = [
+  { id:1, name:'Team Alpha',   project:'Smart Library System',       members:['Ali Ahmed','Hamza Al-Omari','Abdullah Al-Swalmha'], progress:68, status:'ongoing' },
+  { id:2, name:'Team Epsilon', project:'Blockchain Voting System',   members:['Omar Nour','Sara Qasim'], progress:42, status:'ongoing' },
+  { id:3, name:'Team Zeta',    project:'AI Crop Disease Detection',  members:['Khalid Ali','Nour Hasan','Rana Younis'], progress:90, status:'ongoing' },
+];
+
+const aiSuggestMap = {
+  'ai':         ['Smart Graduation Project Management System','AI-powered Adaptive Learning Platform','Automated Skin Disease Detection via Deep Learning'],
+  'web':        ['Real-time Collaborative Code Editor','University Event Management Portal','Smart Campus Navigation Web App'],
+  'security':   ['Blockchain-Based Digital Identity Verification','Intrusion Detection System Using ML','Zero-Trust Network Monitoring Dashboard'],
+  'data':       ['Predictive Analytics for Student Performance','Business Intelligence Dashboard for SMEs','NLP-Based Arabic Sentiment Analysis Tool'],
+  'mobile':     ['AR Campus Guide Mobile App','Smart Parking Finder App','University Mental Health Support App'],
+};
+
+/* ─────────────────────────────────────── */
+/*  LANDING / LOGIN                        */
+/* ─────────────────────────────────────── */
+function showLogin(role) {
+  currentRole = role;
+  const modal = document.getElementById('login-modal');
+  const icon  = document.getElementById('login-icon');
+  const title = document.getElementById('login-title');
+  const sub   = document.getElementById('login-subtitle');
+  const iconMap = { student:'bi-person-graduation', doctor:'bi-person-badge', admin:'bi-shield-check' };
+  const bgMap   = { student:'var(--primary)', doctor:'var(--doc-accent)', admin:'var(--admin-accent)' };
+  const titleMap = { student:'Student Portal', doctor:'Supervisor Portal', admin:'Admin Portal' };
+  const subMap   = {
+    student:'Sign in with your university credentials',
+    doctor:'Sign in to manage your project groups',
+    admin:'Sign in for administrative access',
+  };
+  icon.innerHTML = `<i class="bi ${iconMap[role]}"></i>`;
+  icon.style.background = bgMap[role];
+  title.textContent = titleMap[role];
+  sub.textContent   = subMap[role];
+  modal.style.display = 'flex';
+}
+
+function closeLogin() {
+  document.getElementById('login-modal').style.display = 'none';
+}
+
+function doLogin() {
+  closeLogin();
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + currentRole).classList.add('active');
+  if (currentRole === 'student') renderStudentDashboard();
+  if (currentRole === 'doctor')  renderDoctorDashboard();
+  if (currentRole === 'admin')   renderAdminDashboard();
+  showToast('success', 'Welcome back!', 'You are now signed in.');
+}
+
+function logout() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-landing').classList.add('active');
+  currentRole = null;
+  showToast('info', 'Signed out', 'See you next time!');
+}
+
+/* ─────────────────────────────────────── */
+/*  STUDENT SECTIONS                       */
+/* ─────────────────────────────────────── */
+function showStudentSection(section, el) {
+  document.querySelectorAll('#student-sidebar .nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const fn = {
+    dashboard:   studentDashboard,
+    supervisors: studentSupervisors,
+    register:    studentRegister,
+    progress:    studentProgress,
+    meetings:    studentMeetings,
+    ai:          studentAI,
+    files:       studentFiles,
+  };
+  document.getElementById('student-content').innerHTML = fn[section]?.() || '';
+  initSection(section);
+}
+
+function renderStudentDashboard() {
+  document.getElementById('student-content').innerHTML = studentDashboard();
+  initSection('dashboard');
+}
+
+function studentDashboard() {
+  return `
+  <div class="page-header">
+    <div class="page-title">Welcome back, Ali 👋</div>
+    <div class="page-sub mt-1">Computer Information Systems · Jordan University of Science and Technology</div>
+  </div>
+  <div class="row g-4 mb-4">
+    ${statCard('bi-file-earmark-check-fill','My Project','Smart Graduation PM','blue')}
+    ${statCard('bi-person-badge-fill','Supervisor','Dr. Deya Al-Zoubi','gold')}
+    ${statCard('bi-bar-chart-fill','Progress','68% Complete','green')}
+    ${statCard('bi-calendar-check-fill','Next Meeting','Dec 8, 10:00 AM','purple')}
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="card-sgpms p-4">
+        <div class="section-header mb-3">
+          <div class="fw-bold" style="font-size:1rem">Project Progress</div>
+          <span class="badge-status badge-ongoing">Ongoing</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <span class="text-muted small">Current Phase: <strong>System Design</strong></span>
+          <span class="fw-bold" style="color:var(--primary)">68%</span>
+        </div>
+        <div class="progress-sgpms mb-4"><div class="bar" style="width:68%"></div></div>
+        <div class="fw-semibold mb-3" style="font-size:0.9rem;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase">Milestones</div>
+        ${myProgress.milestones.map((m,i)=>`
+          <div class="timeline-item">
+            <div class="timeline-dot" style="${m.done?'background:var(--success)':'background:var(--border)'}"></div>
+            <div class="flex-1">
+              <div class="d-flex justify-content-between">
+                <span class="fw-${m.done?'600':'500'}" style="color:${m.done?'var(--text)':'var(--muted)'}">${m.label}</span>
+                <span class="text-xs text-muted">${m.date}</span>
+              </div>
+              ${m.done?'<div class="text-xs" style="color:var(--success)"><i class="bi bi-check-circle-fill me-1"></i>Completed</div>':''}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="fw-bold mb-3">Upcoming Meetings</div>
+        <div class="d-flex flex-column gap-3">
+          ${meetings.map(m=>`
+            <div class="d-flex align-items-center gap-3 p-2 rounded-3" style="background:var(--bg)">
+              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;line-height:1.2;text-align:center">${m.date.slice(5,7)}/${m.date.slice(8)}</div>
+              <div>
+                <div class="fw-600" style="font-size:0.88rem">${m.title}</div>
+                <div class="text-muted text-xs">${m.time}</div>
+              </div>
+              <a href="${m.link}" target="_blank" class="ms-auto btn-sm-icon text-decoration-none"><i class="bi bi-camera-video"></i></a>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Quick Actions</div>
+        <div class="d-flex flex-column gap-2">
+          <button class="btn btn-sm text-start d-flex align-items-center gap-2" style="background:var(--bg);border-radius:10px;padding:12px 14px" onclick="showStudentSection('ai',null)">
+            <i class="bi bi-robot" style="color:var(--accent)"></i><span>Generate Project Ideas with AI</span>
+          </button>
+          <button class="btn btn-sm text-start d-flex align-items-center gap-2" style="background:var(--bg);border-radius:10px;padding:12px 14px" onclick="showStudentSection('files',null)">
+            <i class="bi bi-upload" style="color:var(--primary)"></i><span>Upload Project Files</span>
+          </button>
+          <button class="btn btn-sm text-start d-flex align-items-center gap-2" style="background:var(--bg);border-radius:10px;padding:12px 14px" onclick="showStudentSection('supervisors',null)">
+            <i class="bi bi-people" style="color:var(--doc-accent)"></i><span>View Supervisors</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function studentSupervisors() {
+  return `
+  <div class="page-header">
+    <div class="page-title">Available Supervisors</div>
+    <div class="page-sub mt-1">Browse and select your graduation project supervisor</div>
+  </div>
+  <div class="row g-4">
+    ${supervisors.map(s=>{
+      const pct = Math.round(s.groups/s.max*100);
+      const fillClass = pct>=100?'fill-high':pct>=60?'fill-mid':'fill-low';
+      const available = s.groups < s.max;
+      return `
+      <div class="col-md-6 col-lg-4">
+        <div class="sup-card">
+          <div class="d-flex align-items-center gap-3">
+            <div class="sup-avatar">${s.initials}</div>
+            <div>
+              <div class="sup-name">${s.name}</div>
+              <div class="sup-area">${s.area}</div>
+            </div>
+          </div>
+          <div>
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-xs text-muted">Groups Assigned</span>
+              <span class="text-xs fw-semibold">${s.groups}/${s.max}</span>
+            </div>
+            <div class="sup-cap-bar"><div class="fill ${fillClass}" style="width:${pct}%"></div></div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-1">
+            <span class="chip"><i class="bi bi-circle-fill me-1" style="font-size:0.5rem;color:${available?'var(--success)':'var(--danger)'}"></i>${available?'Available':'Full'}</span>
+            <button class="btn-primary-sgpms btn-sm ${!available?'disabled':''}" onclick="showStudentSection('register',null)" ${!available?'disabled':''}>
+              Select <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function studentRegister() {
+  return `
+  <div class="page-header">
+    <div class="page-title">Project Registration</div>
+    <div class="page-sub mt-1">Submit your graduation project request to the department</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card-sgpms p-4">
+        <h6 class="fw-bold mb-4" style="color:var(--primary)"><i class="bi bi-file-earmark-plus me-2"></i>New Project Registration Form</h6>
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label">Project Title</label>
+            <input class="form-control" placeholder="e.g. Smart Graduation Project Management System" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">Project Description</label>
+            <textarea class="form-control" rows="4" placeholder="Describe your project idea, objectives, and expected outcomes..."></textarea>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Select Supervisor</label>
+            <select class="form-select">
+              <option value="">-- Choose a Doctor --</option>
+              ${supervisors.map(s=>`<option>${s.name} (${s.area})</option>`).join('')}
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Academic Year</label>
+            <select class="form-select"><option>2024/2025 – Semester 1</option><option>2024/2025 – Semester 2</option></select>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Team Members (University IDs, comma-separated)</label>
+            <input class="form-control" placeholder="e.g. 202310001, 202310002, 202310003" />
+          </div>
+          <div class="col-12">
+            <label class="form-label">Technical Stack / Tools Planned</label>
+            <input class="form-control" placeholder="e.g. React, Node.js, SQL Server, Python" />
+          </div>
+          <div class="col-12 mt-2">
+            <button class="btn-primary-sgpms" onclick="submitRegistration()">
+              <i class="bi bi-send me-2"></i>Submit Registration Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-sgpms p-4 mb-4" style="border-left:4px solid var(--accent)">
+        <h6 class="fw-bold mb-3"><i class="bi bi-info-circle me-2" style="color:var(--accent)"></i>Submission Guidelines</h6>
+        <ul class="list-unstyled d-flex flex-column gap-2" style="font-size:0.88rem;color:var(--muted)">
+          <li><i class="bi bi-check2 me-2" style="color:var(--success)"></i>Each group may have 2–5 members</li>
+          <li><i class="bi bi-check2 me-2" style="color:var(--success)"></i>Choose a supervisor with available capacity</li>
+          <li><i class="bi bi-check2 me-2" style="color:var(--success)"></i>Project must be original and academic</li>
+          <li><i class="bi bi-check2 me-2" style="color:var(--success)"></i>Provide a clear and detailed description</li>
+          <li><i class="bi bi-exclamation-triangle me-2" style="color:var(--warning)"></i>Department Head will review within 5 days</li>
+        </ul>
+      </div>
+      <div class="card-sgpms p-4">
+        <h6 class="fw-bold mb-3">My Submission Status</h6>
+        <div class="d-flex flex-column gap-3">
+          ${requests.slice(0,2).map(r=>`
+            <div class="p-3 rounded-3" style="background:var(--bg)">
+              <div class="fw-semibold" style="font-size:0.88rem">${r.project}</div>
+              <div class="text-xs text-muted mb-2">${r.date}</div>
+              <span class="badge-status badge-${r.status}">${r.status.charAt(0).toUpperCase()+r.status.slice(1)}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function studentProgress() {
+  return `
+  <div class="page-header">
+    <div class="page-title">My Project Progress</div>
+    <div class="page-sub mt-1">Track your milestones and supervisor feedback</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="fw-bold">Overall Progress</div>
+          <span class="fw-bold fs-5" style="color:var(--primary)">${myProgress.percent}%</span>
+        </div>
+        <div class="progress-sgpms mb-4" style="height:14px"><div class="bar" style="width:${myProgress.percent}%"></div></div>
+        <div class="fw-semibold mb-4" style="font-size:0.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px">Timeline</div>
+        ${myProgress.milestones.map((m,i)=>`
+          <div class="timeline-item">
+            <div class="timeline-dot" style="${m.done?'background:var(--success);box-shadow:0 0 0 3px rgba(40,167,69,0.2)':''}"></div>
+            <div class="flex-1 pb-1">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-${m.done?'600':'400'}" style="color:${m.done?'var(--text)':'var(--muted)'}">${m.label}</span>
+                <span class="text-xs text-muted">${m.date}</span>
+              </div>
+              ${m.done
+                ?'<div class="text-xs mt-1" style="color:var(--success)"><i class="bi bi-check-circle-fill me-1"></i>Completed</div>'
+                :`<div class="text-xs mt-1" style="color:var(--muted)"><i class="bi bi-hourglass-split me-1"></i>${i===3?'In Progress':'Upcoming'}</div>`}
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="fw-bold mb-3"><i class="bi bi-chat-quote me-2" style="color:var(--accent)"></i>Supervisor Feedback</div>
+        <div class="d-flex flex-column gap-3">
+          ${[
+            {msg:'Great progress on the requirement analysis. Make sure to finalize the ER diagram before the next meeting.', date:'Nov 18', from:'Dr. Deya'},
+            {msg:'The use case diagrams look good. Focus on the system design phase this week.', date:'Dec 02', from:'Dr. Deya'},
+          ].map(f=>`
+            <div class="p-3 rounded-3" style="background:var(--bg);border-left:3px solid var(--accent)">
+              <div style="font-size:0.88rem;line-height:1.6">${f.msg}</div>
+              <div class="d-flex justify-content-between mt-2">
+                <span class="text-xs fw-semibold" style="color:var(--primary)">${f.from}</span>
+                <span class="text-xs text-muted">${f.date}</span>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Project Info</div>
+        ${[['Title','Smart Graduation PM System'],['Supervisor','Dr. Deya Al-Zoubi'],['Phase',myProgress.phase],['Team Members','5 Students'],['Start Date','Oct 20, 2025'],['Expected End','Feb 05, 2026']].map(([k,v])=>`
+          <div class="d-flex justify-content-between py-2" style="border-bottom:1px solid var(--border)">
+            <span class="text-muted small">${k}</span>
+            <span class="fw-semibold small">${v}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function studentMeetings() {
+  return `
+  <div class="page-header">
+    <div class="page-title">Meeting Schedule</div>
+    <div class="page-sub mt-1">Your upcoming meetings with Dr. Deya Al-Zoubi</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="d-flex flex-column gap-3">
+        ${meetings.map(m=>`
+          <div class="meeting-card">
+            <div style="width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;font-size:0.82rem;font-weight:700">
+              <span>${new Date(m.date).toLocaleString('en',{month:'short'})}</span>
+              <span style="font-size:1.2rem;line-height:1">${m.date.slice(8)}</span>
+            </div>
+            <div class="flex-1">
+              <div class="meeting-title">${m.title}</div>
+              <div class="meeting-time"><i class="bi bi-clock me-1"></i>${m.time}</div>
+            </div>
+            <a href="${m.link}" target="_blank" class="btn-primary-sgpms text-decoration-none text-white" style="border-radius:10px;padding:10px 18px;font-size:0.85rem">
+              <i class="bi bi-camera-video me-2"></i>Join
+            </a>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-4"><i class="bi bi-calendar3 me-2" style="color:var(--accent)"></i>Meeting Log</div>
+        ${[
+          {title:'Initial Kick-off',date:'Oct 26',dur:'1hr',notes:'Project scope defined'},
+          {title:'Requirement Analysis',date:'Nov 4',dur:'1hr',notes:'Use case diagram reviewed'},
+          {title:'Literature Review',date:'Nov 18',dur:'1hr',notes:'3 articles approved'},
+          {title:'Technical Specification',date:'Nov 23',dur:'1hr',notes:'Tech stack finalized'},
+          {title:'System Modeling',date:'Dec 9',dur:'1hr',notes:'ER diagram submitted'},
+        ].map(l=>`
+          <div class="d-flex gap-3 mb-3">
+            <i class="bi bi-check-circle-fill mt-1" style="color:var(--success);flex-shrink:0"></i>
+            <div>
+              <div class="fw-semibold" style="font-size:0.88rem">${l.title}</div>
+              <div class="text-xs text-muted">${l.date} · ${l.dur} · ${l.notes}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function studentAI() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2540,#1a3a5c)">
+    <div class="page-title"><i class="bi bi-robot me-3" style="color:var(--accent)"></i>AI Project Assistant</div>
+    <div class="page-sub mt-1">Powered by Gemini · Get personalized graduation project ideas</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="ai-chat-wrap">
+        <div class="ai-chat-header">
+          <div class="ai-avatar"><i class="bi bi-robot"></i></div>
+          <div>
+            <div class="fw-bold" style="font-size:0.95rem">SGPMS AI Assistant</div>
+            <div class="text-xs text-muted"><span style="color:var(--success)">●</span> Online</div>
+          </div>
+        </div>
+        <div class="ai-chat-msgs" id="ai-msgs">
+          <!-- Chat messages will be injected here by JS -->
+        </div>
+        <div class="ai-chat-input">
+          <input id="ai-input" placeholder="Type your message/Question… e.g. what project do you recommend for a CS student?" onkeydown="if(event.key==='Enter')sendAIChat()"/>
+          <button class="ai-send-btn" onclick="sendAIChat()"><i class="bi bi-send-fill"></i></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="fw-bold mb-3"><i class="bi bi-lightbulb me-2" style="color:var(--accent)"></i>How It Works</div>
+        ${[['1','Tell me your major & skills','e.g. CIS, Python, React'],['2','Choose a domain','AI, Web, Security, Data…'],['3','Get tailored ideas','Titles, descriptions & references']].map(([n,t,s])=>`
+          <div class="d-flex gap-3 mb-3">
+            <div style="width:28px;height:28px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0">${n}</div>
+            <div><div class="fw-semibold" style="font-size:0.88rem">${t}</div><div class="text-xs text-muted">${s}</div></div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function studentFiles() {
+  return `
+  <div class="page-header">
+    <div class="page-title">My Files</div>
+    <div class="page-sub mt-1">Upload and manage your project documents</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="file-drop" onclick="showToast('info','Upload','File upload requires backend integration.')">
+          <i class="bi bi-cloud-arrow-up"></i>
+          <div class="fw-semibold mb-1">Drag & drop files here</div>
+          <div class="text-muted small">Supports PDF, DOCX, PPTX · Max 50MB per file</div>
+          <button class="btn-primary-sgpms mt-3" style="display:inline-block">Browse Files</button>
+        </div>
+      </div>
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Uploaded Files</div>
+        <table class="table table-sgpms">
+          <thead><tr><th>File Name</th><th>Type</th><th>Size</th><th>Uploaded</th><th>Actions</th></tr></thead>
+          <tbody>
+            ${[
+              {name:'Project_Proposal.pdf',type:'PDF',size:'1.2 MB',date:'Oct 20'},
+              {name:'Requirements_SRS.docx',type:'DOCX',size:'840 KB',date:'Nov 10'},
+              {name:'System_Design.pptx',type:'PPTX',size:'3.1 MB',date:'Dec 01'},
+            ].map(f=>`
+              <tr>
+                <td><i class="bi bi-file-earmark-fill me-2" style="color:var(--accent)"></i>${f.name}</td>
+                <td><span class="chip">${f.type}</span></td>
+                <td>${f.size}</td>
+                <td>${f.date}</td>
+                <td>
+                  <button class="btn-sm-icon me-1" title="Download"><i class="bi bi-download"></i></button>
+                  <button class="btn-sm-icon" title="Delete" onclick="showToast('danger','Deleted','File removed.')"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Storage Usage</div>
+        <div class="d-flex justify-content-between mb-2"><span class="text-muted small">Used</span><span class="fw-semibold small">5.14 MB / 100 MB</span></div>
+        <div class="progress-sgpms mb-4"><div class="bar" style="width:5%"></div></div>
+        <div class="fw-bold mb-3">Required Documents</div>
+        ${[
+          {label:'Project Proposal',done:true},
+          {label:'SRS Document',done:true},
+          {label:'Design Document',done:false},
+          {label:'Final Report',done:false},
+          {label:'Presentation Slides',done:false},
+        ].map(r=>`
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi ${r.done?'bi-check-circle-fill':'bi-circle'}" style="color:${r.done?'var(--success)':'var(--border)'}"></i>
+            <span style="font-size:0.88rem;color:${r.done?'var(--text)':'var(--muted)'}">${r.label}</span>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ─────────────────────────────────────── */
+/*  DOCTOR SECTIONS                        */
+/* ─────────────────────────────────────── */
+function renderDoctorDashboard() {
+  document.getElementById('doctor-content').innerHTML = doctorDashboard();
+  initSection('doctor-dashboard');
+}
+function showDoctorSection(section, el) {
+  document.querySelectorAll('#doctor-sidebar .nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const fn = { dashboard: doctorDashboard, groups: doctorGroups_fn, meetings: doctorMeetings, progress: doctorProgress, feedback: doctorFeedback };
+  document.getElementById('doctor-content').innerHTML = fn[section]?.() || '';
+}
+
+function doctorDashboard() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2a25,#1a3530)">
+    <div class="page-title">Welcome, Dr. Deya Al-Zoubi 👨‍🏫</div>
+    <div class="page-sub mt-1">AI & Machine Learning · Supervisor Portal</div>
+  </div>
+  <div class="row g-4 mb-4">
+    ${statCard2('bi-people-fill','Active Groups','3','teal')}
+    ${statCard2('bi-person-fill','Total Students','11','blue')}
+    ${statCard2('bi-calendar-check-fill','Meetings This Week','2','gold')}
+    ${statCard2('bi-bell-fill','Pending Notifications','4','purple')}
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-4">Groups Overview</div>
+        ${doctorGroups.map(g=>`
+          <div class="p-3 rounded-3 mb-3" style="background:var(--bg)">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <div>
+                <div class="fw-bold">${g.name}</div>
+                <div class="text-muted text-xs">${g.project}</div>
+              </div>
+              <span class="badge-status badge-ongoing">${g.status}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1"><span class="text-xs text-muted">Progress</span><span class="text-xs fw-bold">${g.progress}%</span></div>
+            <div class="progress-sgpms"><div class="bar" style="width:${g.progress}%"></div></div>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="fw-bold mb-3"><i class="bi bi-bell me-2" style="color:var(--accent)"></i>Recent Notifications</div>
+        ${[
+          {msg:'Team Alpha submitted weekly progress report',time:'2h ago'},
+          {msg:'New group Team Theta assigned to you',time:'5h ago'},
+          {msg:'Team Epsilon uploaded project files',time:'Yesterday'},
+          {msg:'Department Head approved Team Zeta',time:'2 days ago'},
+        ].map(n=>`
+          <div class="d-flex gap-3 mb-3 pb-3" style="border-bottom:1px solid var(--border)">
+            <div class="notif-dot mt-2"></div>
+            <div><div style="font-size:0.88rem">${n.msg}</div><div class="text-xs text-muted">${n.time}</div></div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function doctorGroups_fn() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2a25,#1a3530)">
+    <div class="page-title">My Groups</div>
+    <div class="page-sub mt-1">All project groups assigned to you</div>
+  </div>
+  ${doctorGroups.map(g=>`
+    <div class="card-sgpms p-4 mb-4">
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h5 class="fw-bold mb-1">${g.name}</h5>
+          <div class="text-muted" style="font-size:0.9rem">${g.project}</div>
+        </div>
+        <span class="badge-status badge-ongoing">${g.status}</span>
+      </div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="fw-semibold small mb-2">Team Members</div>
+          ${g.members.map(m=>`
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <div style="width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700">${m.split(' ').map(w=>w[0]).slice(0,2).join('')}</div>
+              <span style="font-size:0.88rem">${m}</span>
+            </div>`).join('')}
+        </div>
+        <div class="col-md-6">
+          <div class="fw-semibold small mb-2">Progress: ${g.progress}%</div>
+          <div class="progress-sgpms mb-3"><div class="bar" style="width:${g.progress}%"></div></div>
+          <div class="d-flex gap-2">
+            <button class="btn-primary-sgpms btn-sm" onclick="showDoctorSection('progress',null)">Update Progress</button>
+            <button class="btn-accent btn-sm" onclick="showDoctorSection('meetings',null)">Schedule Meeting</button>
+          </div>
+        </div>
+      </div>
+    </div>`).join('')}`;
+}
+
+function doctorMeetings() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2a25,#1a3530)">
+    <div class="page-title">Schedule Meetings</div>
+    <div class="page-sub mt-1">Create and manage group meeting schedules</div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-4"><i class="bi bi-calendar-plus me-2" style="color:var(--doc-accent)"></i>New Meeting</div>
+        <div class="row g-3">
+          <div class="col-12"><label class="form-label">Select Group</label>
+            <select class="form-select">${doctorGroups.map(g=>`<option>${g.name} – ${g.project}</option>`).join('')}</select></div>
+          <div class="col-12"><label class="form-label">Meeting Title</label><input class="form-control" placeholder="e.g. Weekly Progress Check"/></div>
+          <div class="col-md-6"><label class="form-label">Date</label><input type="date" class="form-control"/></div>
+          <div class="col-md-6"><label class="form-label">Time</label><input type="time" class="form-control"/></div>
+          <div class="col-12"><label class="form-label">Meeting Link / Location</label><input class="form-control" placeholder="Zoom/Google Meet link or room number"/></div>
+          <div class="col-12"><label class="form-label">Notes for Students</label><textarea class="form-control" rows="3" placeholder="Topics to prepare…"></textarea></div>
+          <div class="col-12"><button class="btn-primary-sgpms" onclick="showToast('success','Meeting Scheduled','Students have been notified.')"><i class="bi bi-send me-2"></i>Send Schedule</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Upcoming Meetings</div>
+        <div class="d-flex flex-column gap-3">
+          ${meetings.map(m=>`
+            <div class="meeting-card" style="border-left-color:var(--doc-accent)">
+              <div style="width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--doc-accent),#45a895);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.78rem;font-weight:700;flex-shrink:0">
+                <span>${new Date(m.date).toLocaleString('en',{month:'short'})}</span>
+                <span style="font-size:1.1rem">${m.date.slice(8)}</span>
+              </div>
+              <div class="flex-1">
+                <div class="meeting-title">${m.title}</div>
+                <div class="meeting-time">${m.group} · ${m.time}</div>
+              </div>
+              <button class="btn-sm-icon" title="Edit" onclick="showToast('info','Edit Meeting','Edit form will open.')"><i class="bi bi-pencil"></i></button>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function doctorProgress() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2a25,#1a3530)">
+    <div class="page-title">Update Project Progress</div>
+    <div class="page-sub mt-1">Log feedback and set progress for your groups</div>
+  </div>
+  <div class="d-flex flex-column gap-4">
+    ${doctorGroups.map(g=>`
+      <div class="card-sgpms p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div><h6 class="fw-bold mb-0">${g.name}</h6><div class="text-muted text-xs">${g.project}</div></div>
+          <span class="fw-bold" style="color:var(--doc-accent);font-size:1.2rem">${g.progress}%</span>
+        </div>
+        <div class="progress-sgpms mb-3"><div class="bar" style="width:${g.progress}%"></div></div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Update Progress (%)</label>
+            <input type="range" class="form-range" min="0" max="100" value="${g.progress}" oninput="this.nextElementSibling.textContent=this.value+'%'"/>
+            <small class="text-muted">${g.progress}%</small>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Current Phase</label>
+            <select class="form-select">
+              <option>Requirement Analysis</option>
+              <option selected>System Design</option>
+              <option>Implementation</option>
+              <option>Testing</option>
+              <option>Deployment</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Grade (Optional)</label>
+            <select class="form-select"><option>--</option><option>A+</option><option>A</option><option>B+</option><option>B</option><option>C+</option><option>C</option></select>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Feedback / Comments</label>
+            <textarea class="form-control" rows="2" placeholder="Write your feedback for this group…"></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn-primary-sgpms" onclick="showToast('success','Saved','Progress updated and students notified.')">
+              <i class="bi bi-floppy me-2"></i>Save Changes
+            </button>
+          </div>
+        </div>
+      </div>`).join('')}
+  </div>`;
+}
+
+function doctorFeedback() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#0f2a25,#1a3530)">
+    <div class="page-title">Feedback Center</div>
+    <div class="page-sub mt-1">All feedback you've given to student groups</div>
+  </div>
+  <div class="card-sgpms p-4">
+    <table class="table table-sgpms">
+      <thead><tr><th>Group</th><th>Date</th><th>Feedback</th><th>Phase</th></tr></thead>
+      <tbody>
+        ${[
+          {g:'Team Alpha',d:'Dec 02',fb:'Finalize ER diagram before next meeting.',ph:'System Design'},
+          {g:'Team Alpha',d:'Nov 18',fb:'Literature review is solid. Good references cited.',ph:'Literature Review'},
+          {g:'Team Epsilon',d:'Nov 30',fb:'Blockchain architecture needs more detail.',ph:'Requirement Analysis'},
+          {g:'Team Zeta',d:'Dec 01',fb:'AI model training results look promising.',ph:'Implementation'},
+        ].map(r=>`
+          <tr>
+            <td><strong>${r.g}</strong></td>
+            <td>${r.d}</td>
+            <td>${r.fb}</td>
+            <td><span class="chip">${r.ph}</span></td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+/* ─────────────────────────────────────── */
+/*  ADMIN SECTIONS                         */
+/* ─────────────────────────────────────── */
+function renderAdminDashboard() {
+  document.getElementById('admin-content').innerHTML = adminDashboard();
+}
+function showAdminSection(section, el) {
+  document.querySelectorAll('#admin-sidebar .nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const fn = { dashboard: adminDashboard, requests: adminRequests, supervisors: adminSupervisors, students: adminStudents, reports: adminReports };
+  document.getElementById('admin-content').innerHTML = fn[section]?.() || '';
+}
+
+function adminDashboard() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#160a30,#1e1040)">
+    <div class="page-title">Admin Dashboard</div>
+    <div class="page-sub mt-1">Department Head · Full System Overview</div>
+  </div>
+  <div class="row g-4 mb-4">
+    ${statCard3('bi-inbox-fill','Pending Requests','2','gold')}
+    ${statCard3('bi-people-fill','Total Students','48','blue')}
+    ${statCard3('bi-person-badge-fill','Active Supervisors','6','purple')}
+    ${statCard3('bi-check2-circle','Approved Projects','12','green')}
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="card-sgpms p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="fw-bold">Recent Requests</div>
+          <button class="btn-sm" style="border:1.5px solid var(--border);border-radius:8px;background:transparent;padding:6px 14px;font-size:0.82rem" onclick="showAdminSection('requests',null)">View All</button>
+        </div>
+        <table class="table table-sgpms mb-0">
+          <thead><tr><th>Group</th><th>Project</th><th>Supervisor</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            ${requests.slice(0,4).map(r=>`
+              <tr>
+                <td class="fw-semibold">${r.group}</td>
+                <td class="text-muted" style="font-size:0.85rem">${r.project}</td>
+                <td class="text-muted" style="font-size:0.85rem">${r.supervisor.replace('Dr. ','')}</td>
+                <td><span class="badge-status badge-${r.status}">${r.status.charAt(0).toUpperCase()+r.status.slice(1)}</span></td>
+                <td>
+                  ${r.status==='pending'?`
+                    <button class="btn-sm-icon me-1" title="Approve" onclick="approveRequest(${r.id})" style="color:var(--success)"><i class="bi bi-check-lg"></i></button>
+                    <button class="btn-sm-icon" title="Reject" onclick="rejectRequest(${r.id})" style="color:var(--danger)"><i class="bi bi-x-lg"></i></button>`
+                  :'<span class="text-muted text-xs">—</span>'}
+                </td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card-sgpms p-4 mb-4">
+        <div class="fw-bold mb-3">Supervisor Capacity</div>
+        ${supervisors.map(s=>{
+          const pct = Math.round(s.groups/s.max*100);
+          return `
+          <div class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span style="font-size:0.85rem">${s.name}</span>
+              <span class="text-xs fw-semibold">${s.groups}/${s.max}</span>
+            </div>
+            <div class="sup-cap-bar"><div class="fill ${pct>=100?'fill-high':pct>=60?'fill-mid':'fill-low'}" style="width:${pct}%"></div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function adminRequests() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#160a30,#1e1040)">
+    <div class="page-title">Project Requests</div>
+    <div class="page-sub mt-1">Review and approve/reject student registration requests</div>
+  </div>
+  <div class="card-sgpms p-4">
+    <div class="d-flex gap-2 mb-4 flex-wrap">
+      ${['All','Pending','Approved','Rejected'].map((f,i)=>`<button class="chip" style="cursor:pointer;border:none;${i===0?'background:var(--primary);color:#fff':''}">${f}</button>`).join('')}
+    </div>
+    <table class="table table-sgpms">
+      <thead><tr><th>Group</th><th>Project</th><th>Supervisor</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="requests-table">
+        ${requests.map(r=>`
+          <tr id="req-row-${r.id}">
+            <td class="fw-semibold">${r.group}</td>
+            <td>${r.project}</td>
+            <td>${r.supervisor}</td>
+            <td>${r.date}</td>
+            <td><span class="badge-status badge-${r.status}" id="req-badge-${r.id}">${r.status.charAt(0).toUpperCase()+r.status.slice(1)}</span></td>
+            <td>
+              ${r.status==='pending'?`
+                <button class="btn-sm-icon me-1" title="Approve" onclick="approveRequest(${r.id})" style="color:var(--success)"><i class="bi bi-check-lg"></i></button>
+                <button class="btn-sm-icon" title="Reject"  onclick="rejectRequest(${r.id})" style="color:var(--danger)"><i class="bi bi-x-lg"></i></button>`
+              :`<button class="btn-sm-icon" title="View" onclick="showToast('info','Details','Request details view.')"><i class="bi bi-eye"></i></button>`}
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+function adminSupervisors() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#160a30,#1e1040)">
+    <div class="page-title">Supervisors</div>
+    <div class="page-sub mt-1">Manage faculty supervisors and their capacities</div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <span class="text-muted small">${supervisors.length} supervisors registered</span>
+    <button class="btn-primary-sgpms" onclick="showToast('info','Add','Add supervisor form will open.')"><i class="bi bi-plus me-2"></i>Add Supervisor</button>
+  </div>
+  <div class="row g-4">
+    ${supervisors.map(s=>{
+      const pct = Math.round(s.groups/s.max*100);
+      return `
+      <div class="col-md-6 col-lg-4">
+        <div class="sup-card">
+          <div class="d-flex align-items-center gap-3">
+            <div class="sup-avatar" style="background:linear-gradient(135deg,var(--admin-accent),var(--primary))">${s.initials}</div>
+            <div><div class="sup-name">${s.name}</div><div class="sup-area">${s.area}</div></div>
+          </div>
+          <div>
+            <div class="d-flex justify-content-between mb-1"><span class="text-xs text-muted">Load</span><span class="text-xs fw-semibold">${s.groups}/${s.max}</span></div>
+            <div class="sup-cap-bar"><div class="fill ${pct>=100?'fill-high':pct>=60?'fill-mid':'fill-low'}" style="width:${pct}%"></div></div>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-sm-icon" title="Edit" onclick="showToast('info','Edit','Edit supervisor.')"><i class="bi bi-pencil"></i></button>
+            <button class="btn-sm-icon" title="Remove" onclick="showToast('danger','Removed','Supervisor removed.')"><i class="bi bi-trash"></i></button>
+            <span class="chip ms-auto">${s.groups<s.max?'Available':'Full'}</span>
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function adminStudents() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#160a30,#1e1040)">
+    <div class="page-title">Students</div>
+    <div class="page-sub mt-1">All registered students in the system</div>
+  </div>
+  <div class="card-sgpms p-4">
+    <div class="d-flex justify-content-between mb-3 flex-wrap gap-2">
+      <input class="form-control" style="max-width:280px" placeholder="Search by name or ID…"/>
+      <button class="btn-primary-sgpms" onclick="showToast('info','Add Student','Add student form.')"><i class="bi bi-plus me-2"></i>Add Student</button>
+    </div>
+    <table class="table table-sgpms">
+      <thead><tr><th>ID</th><th>Name</th><th>Major</th><th>Group</th><th>Supervisor</th><th>Status</th></tr></thead>
+      <tbody>
+        ${[
+          {id:'202310001',n:'Ali Ahmed',m:'CIS',g:'Team Alpha',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310002',n:'Hamza Al-Omari',m:'CIS',g:'Team Alpha',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310003',n:'Abdullah Al-Swalmha',m:'CIS',g:'Team Alpha',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310004',n:'Obada Al-Krnaz',m:'CIS',g:'Team Alpha',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310005',n:'Mohammad Alsouliman',m:'CIS',g:'Team Alpha',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310006',n:'Sara Qasim',m:'CS',g:'Team Epsilon',s:'Dr. Omar Nasser',st:'approved'},
+          {id:'202310007',n:'Khalid Ali',m:'SE',g:'Team Zeta',s:'Dr. Deya Al-Zoubi',st:'approved'},
+          {id:'202310008',n:'Nour Hassan',m:'IT',g:'Team Beta',s:'Dr. Sara Khalil',st:'pending'},
+        ].map(r=>`
+          <tr>
+            <td class="text-muted text-xs">${r.id}</td>
+            <td class="fw-semibold">${r.n}</td>
+            <td>${r.m}</td>
+            <td>${r.g||'—'}</td>
+            <td class="text-muted" style="font-size:0.85rem">${r.s||'—'}</td>
+            <td><span class="badge-status badge-${r.st}">${r.st.charAt(0).toUpperCase()+r.st.slice(1)}</span></td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+function adminReports() {
+  return `
+  <div class="page-header" style="background:linear-gradient(120deg,#160a30,#1e1040)">
+    <div class="page-title">Reports</div>
+    <div class="page-sub mt-1">Generate and export system reports</div>
+  </div>
+  <div class="row g-4 mb-4">
+    ${[
+      {icon:'bi-check2-circle',label:'Approved',val:12,color:'success'},
+      {icon:'bi-hourglass-split',label:'Pending',val:2,color:'warning'},
+      {icon:'bi-x-circle',label:'Rejected',val:3,color:'danger'},
+      {icon:'bi-collection',label:'Total Projects',val:17,color:'primary'},
+    ].map(s=>`
+      <div class="col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon ${s.color==='primary'?'blue':s.color==='success'?'green':s.color==='warning'?'gold':'purple'}">
+            <i class="bi ${s.icon}"></i>
+          </div>
+          <div><div class="stat-num">${s.val}</div><div class="stat-label">${s.label}</div></div>
+        </div>
+      </div>`).join('')}
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="card-sgpms p-4">
+        <div class="fw-bold mb-3">Projects by Status</div>
+        <div id="chart-donut" style="display:flex;align-items:center;gap:24px">
+          <svg width="130" height="130" viewBox="0 0 42 42">
+            <circle r="15.9" cx="21" cy="21" fill="none" stroke="var(--border)" stroke-width="6"/>
+            <circle r="15.9" cx="21" cy="21" fill="none" stroke="var(--success)" stroke-width="6" stroke-dasharray="70.6 29.4" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+            <circle r="15.9" cx="21" cy="21" fill="none" stroke="var(--warning)" stroke-width="6" stroke-dasharray="11.8 88.2" stroke-dashoffset="-45.7" transform="rotate(-90 21 21)"/>
+            <circle r="15.9" cx="21" cy="21" fill="none" stroke="var(--danger)" stroke-width="6" stroke-dasharray="17.6 82.4" stroke-dashoffset="-57.5" transform="rotate(-90 21 21)"/>
+          </svg>
+          <div>
+            ${[['var(--success)','Approved','12','70.6%'],['var(--warning)','Pending','2','11.8%'],['var(--danger)','Rejected','3','17.6%']].map(([c,l,n,p])=>`
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <div style="width:10px;height:10px;border-radius:3px;background:${c}"></div>
+                <span style="font-size:0.88rem">${l}</span>
+                <span class="fw-bold ms-auto" style="font-size:0.88rem">${n} <span class="text-muted fw-normal">(${p})</span></span>
+              </div>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card-sgpms p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="fw-bold">Export Reports</div>
+        </div>
+        ${[
+          {icon:'bi-file-earmark-pdf',label:'All Projects Report',sub:'PDF format · All project statuses'},
+          {icon:'bi-file-earmark-spreadsheet',label:'Supervisor Load Report',sub:'Excel format · Capacity overview'},
+          {icon:'bi-file-earmark-bar-graph',label:'Progress Summary',sub:'PDF format · All groups progress'},
+          {icon:'bi-envelope-paper',label:'Invoice to Supervisors',sub:'Per university policy'},
+        ].map(r=>`
+          <div class="d-flex align-items-center justify-content-between p-3 rounded-3 mb-2" style="background:var(--bg)">
+            <div class="d-flex align-items-center gap-3">
+              <i class="bi ${r.icon}" style="font-size:1.3rem;color:var(--admin-accent)"></i>
+              <div><div class="fw-semibold" style="font-size:0.88rem">${r.label}</div><div class="text-xs text-muted">${r.sub}</div></div>
+            </div>
+            <button class="btn-sm-icon" onclick="showToast('success','Export','Report generated successfully.')"><i class="bi bi-download"></i></button>
+          </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ─────────────────────────────────────── */
+/*  HELPERS                                */
+/* ─────────────────────────────────────── */
+function statCard(icon, label, value, colorClass) {
+  return `<div class="col-md-6 col-lg-3"><div class="stat-card"><div class="stat-icon ${colorClass}"><i class="bi ${icon}"></i></div><div><div class="stat-num" style="font-size:1rem;font-weight:600">${value}</div><div class="stat-label">${label}</div></div></div></div>`;
+}
+function statCard2(icon, label, value, colorClass) {
+  return `<div class="col-md-6 col-lg-3"><div class="stat-card"><div class="stat-icon ${colorClass}"><i class="bi ${icon}"></i></div><div><div class="stat-num">${value}</div><div class="stat-label">${label}</div></div></div></div>`;
+}
+function statCard3(icon, label, value, colorClass) {
+  return `<div class="col-md-6 col-lg-3"><div class="stat-card"><div class="stat-icon ${colorClass}"><i class="bi ${icon}"></i></div><div><div class="stat-num">${value}</div><div class="stat-label">${label}</div></div></div></div>`;
+}
+
+function approveRequest(id) {
+  const badge = document.getElementById(`req-badge-${id}`);
+  if (badge) { badge.className='badge-status badge-approved'; badge.textContent='Approved'; }
+  const row = document.getElementById(`req-row-${id}`);
+  if (row) { const td = row.querySelector('td:last-child'); if(td) td.innerHTML='<i class="bi bi-check-circle-fill" style="color:var(--success)"></i>'; }
+  showToast('success','Approved','Project approved and supervisor notified.');
+}
+function rejectRequest(id) {
+  const badge = document.getElementById(`req-badge-${id}`);
+  if (badge) { badge.className='badge-status badge-rejected'; badge.textContent='Rejected'; }
+  const row = document.getElementById(`req-row-${id}`);
+  if (row) { const td = row.querySelector('td:last-child'); if(td) td.innerHTML='<i class="bi bi-x-circle-fill" style="color:var(--danger)"></i>'; }
+  showToast('danger','Rejected','Project registration rejected.');
+}
+
+function submitRegistration() {
+  showToast('success','Submitted!','Your registration request has been sent to the Department Head.');
+}
+
+/* ─── AI Chat (REAL PYTHON INTEGRATION) ─── */
+let userMajor = "";
+let userCategory = "";
+const itMajors = ["Computer Science", "Computer Information Systems", "Software Engineering", "Network Engineering & Security", "Cyber Security", "Artificial Intelligence", "Data Science", "Health Information Systems"];
+const projectCategories = ["Mobile Dev", "Web Dev", "AI / Health IT", "Security / IoT", "AI / Analytics"];
+
+function appendBotMessage(text) {
+  const container = document.getElementById('ai-msgs');
+  if (!container) return;
+  // Make markdown bold work nicely
+  const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+  container.insertAdjacentHTML('beforeend', `
+    <div class="msg bot">
+      <div class="msg-bubble">${formattedText}</div>
+      <div class="msg-time">AI Assistant · Now</div>
+    </div>`);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showQuickReplies(options, callback) {
+  const container = document.getElementById('ai-msgs');
+  if (!container) return;
+  const replyDiv = document.createElement('div');
+  replyDiv.className = 'd-flex flex-wrap gap-2 mt-2';
+
+  options.forEach(option => {
+    const btn = document.createElement('button');
+    btn.className = 'chip'; 
+    btn.style.cssText = 'cursor:pointer; border:1px solid var(--primary); background:var(--surface); transition:0.2s;';
+    btn.innerText = option;
+    btn.onclick = () => {
+      replyDiv.remove(); // Hide buttons after clicking
+      container.insertAdjacentHTML('beforeend', `
+        <div class="msg user">
+          <div class="msg-bubble">${option}</div>
+          <div class="msg-time">Now</div>
+        </div>`);
+      callback(option);
+    };
+    replyDiv.appendChild(btn);
+  });
+  container.appendChild(replyDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+function startSGPMSChat() {
+  const container = document.getElementById('ai-msgs');
+  if (!container) return;
+  container.innerHTML = ''; // Clear chat history
+  document.getElementById('ai-input').disabled = true; // Lock typing initially
+
+  appendBotMessage("Welcome To The SGPMS AI Assistant! Please select your major:");
+  showQuickReplies(itMajors, (selectedMajor) => {
+    userMajor = selectedMajor;
+    setTimeout(() => {
+      appendBotMessage("Great! What kind of project category are you interested in?");
+      showQuickReplies(projectCategories, (selectedCategory) => {
+        userCategory = selectedCategory;
+        sendInitialDataToBackend(userMajor, userCategory);
+      });
+    }, 500);
+  });
+}
+
+async function sendInitialDataToBackend(major, category) {
+  appendBotMessage("Analyzing the database for the best JUST supervisors... <i class='bi bi-hourglass-split' style='animation:blink 1s infinite'></i>");
+  try {
+    const response = await fetch('http://127.0.0.1:5000/api/init_chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ major: major, interests: category })
+    });
+    const data = await response.json();
+    
+    // Remove the "Analyzing..." message
+    const msgs = document.getElementById('ai-msgs');
+    msgs.lastElementChild.remove();
+    
+    appendBotMessage(data.reply);
+    document.getElementById('ai-input').disabled = false; // Unlock text box!
+    document.getElementById('ai-input').focus();
+  } catch (error) {
+    const msgs = document.getElementById('ai-msgs');
+    msgs.lastElementChild.remove();
+    appendBotMessage("❌ Error connecting to the Python AI. Make sure your Flask server is running in VS Code.");
+  }
+}
+
+async function sendAIChat() {
+  const inputEl = document.getElementById('ai-input');
+  const msg = inputEl.value.trim();
+  if (!msg) return;
+  inputEl.value = '';
+
+  const container = document.getElementById('ai-msgs');
+  container.insertAdjacentHTML('beforeend', `
+    <div class="msg user">
+      <div class="msg-bubble">${msg}</div>
+      <div class="msg-time">Now</div>
+    </div>`);
+  container.scrollTop = container.scrollHeight;
+
+  const typingId = 'typing-' + Date.now();
+  container.insertAdjacentHTML('beforeend', `
+    <div class="msg bot" id="${typingId}">
+      <div class="msg-bubble"><i class="bi bi-three-dots" style="font-size:1.2rem;letter-spacing:4px;animation:blink 1s infinite"></i></div>
+    </div>`);
+  container.scrollTop = container.scrollHeight;
+
+  try {
+    const response = await fetch('http://127.0.0.1:5000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+    const data = await response.json();
+    document.getElementById(typingId).remove();
+    appendBotMessage(data.reply);
+  } catch (error) {
+    document.getElementById(typingId).remove();
+    appendBotMessage("❌ Sorry, the AI is offline. Please check your Python server.");
+  }
+}
+/* ─── Toast ─── */
+function showToast(type, title, msg) {
+  const iconMap = { success:'bi-check-circle-fill', danger:'bi-x-circle-fill', info:'bi-info-circle-fill', warning:'bi-exclamation-triangle-fill' };
+  const colorMap = { success:'var(--success)', danger:'var(--danger)', info:'var(--primary)', warning:'var(--warning)' };
+  const id = 'toast-' + Date.now();
+  const container = document.getElementById('toast-container');
+  container.insertAdjacentHTML('beforeend', `
+    <div id="${id}" class="toast-sgpms d-flex align-items-center gap-3 mb-2">
+      <i class="bi ${iconMap[type]}" style="color:${colorMap[type]};font-size:1.2rem;flex-shrink:0"></i>
+      <div><div class="fw-semibold" style="font-size:0.88rem">${title}</div><div class="text-muted" style="font-size:0.82rem">${msg}</div></div>
+    </div>`);
+  setTimeout(() => { const el = document.getElementById(id); if (el) el.remove(); }, 3500);
+}
+
+/* ─── Section init ─── */
+function initSection(section) {
+  // Animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.progress-sgpms .bar').forEach(b => {
+      const w = b.style.width; b.style.width = '0'; setTimeout(() => { b.style.width = w; }, 50);
+    });
+    document.querySelectorAll('.sup-cap-bar .fill').forEach(f => {
+      const w = f.style.width; f.style.width = '0'; setTimeout(() => { f.style.width = w; }, 50);
+    });
+  }, 80);
+
+  // START REAL AI CHAT IF AI SECTION IS LOADED
+  if (section === 'ai') {
+    startSGPMSChat();
+  }
+}
+
+/* ─── Close modal on backdrop click ─── */
+document.addEventListener('click', function(e) {
+  const modal = document.getElementById('login-modal');
+  if (modal && modal.style.display !== 'none' && e.target === modal) closeLogin();
+});
+
+/* Add blink keyframe for AI typing */
+const style = document.createElement('style');
+style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
