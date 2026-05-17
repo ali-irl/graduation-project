@@ -1,90 +1,101 @@
-from flask import Flask, request, jsonify
+import json
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-import pandas as pd
-import torch
-from sentence_transformers import SentenceTransformer, util
-import google.generativeai as genai 
-import os
-from dotenv import load_dotenv
-import google.generativeai as genai
+import requests
 
 app = Flask(__name__)
 CORS(app)
 
-# Load the variables from the .env file
-load_dotenv()
+# الرابط الصحيح لقاعدة بيانات أوراكل APEX الخاصة بمشروع SGPMS
+APEX_URL = "https://apex.oracle.com/ords/abdalluhcis1/supervisortab/"
 
-# Get the key
-API_KEY = os.getenv("GOOGLE_API_KEY")
+# 1. مسار جلب الدكاترة (مباشرة من أوراكل)
+@app.route('/api/supervisors', methods=['GET'])
+def get_supervisors():
+    try:
+        # إعدادات لضمان عدم حظر الطلب وسرعة الاستجابة
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
+        
+        # طلب البيانات مع timeout لمدة 10 ثواني لمنع التعليق
+        response = requests.get(APEX_URL, headers=headers, timeout=10, verify=False)
+        
+        # ضبط الترميز ليدعم الأسماء العربية بشكل صحيح
+        response.encoding = 'utf-8' 
+        data = response.json()
+        
+        # جلب المصفوفة من أوراكل (دايماً بتكون تحت اسم items)
+        apex_items = data.get('items', [])
+        
+        apex_items = data.get('items', [])
+        
+        # هاي الجملة رح تطبع أول دكتور بالـ Terminal عشان نكشف أسماء الأعمدة الحقيقية
+        if len(apex_items) > 0:
+            print("💡 Raw Oracle Data (First Item):", apex_items[0])
 
-if API_KEY:
-    genai.configure(api_key=API_KEY)
-    print("✅ API Key loaded successfully.")
-else:
-    print("❌ Error: API_KEY not found in environment.")
+        formatted_sups = []
+        for s in apex_items:
+            # توحيد كل المفاتيح (أسماء الأعمدة) لتصير أحرف صغيرة عشان نتجنب أي تعقيد
+            s_clean = {str(k).lower(): v for k, v in s.items()}
+            
+            # بنحاول نسحب الداتا بأكثر من اسم محتمل
+            full_name = s_clean.get('supervisor_name') or s_clean.get('name') or 'غير معروف'
+            specialization = s_clean.get('supervisor_specialization') or s_clean.get('specialization') or 'CIS'
+            max_cap = s_clean.get('max_group_capacity') or s_clean.get('max_capacity') or 5
+            sup_id = s_clean.get('supervisor_id') or s_clean.get('id')
 
-MODEL_ID = 'models/gemini-2.5-flash'
-model = genai.GenerativeModel(model_name=MODEL_ID)
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+            # تقسيم الاسم بالعربي (مثلاً: ضياء الزعبي -> ['ضياء', 'الزعبي'])
+            name_parts = full_name.split()
+            initials = "".join([n[0] for n in name_parts if n])[:2] if name_parts else "??"
 
-# Load Excel files
-projects_df = pd.read_excel('projects.xlsx')
-teachers_df = pd.read_excel('teachers.xlsx')
+            formatted_sups.append({
+                "id": sup_id,
+                "name": full_name,
+                "area": specialization,
+                "max": max_cap,
+                "groups": 0, 
+                "initials": initials
+            })            
+        # إرجاع البيانات بتنسيق JSON يدعم العربية (ensure_ascii=False)
+        return app.response_class(
+            response=json.dumps(formatted_sups, ensure_ascii=False),
+            status=200,
+            mimetype='application/json'
+        )
+        
+    except Exception as e:
+        print(f"🚨 Error: {e}")
+        return jsonify({
+            "error": "Unable to reach Database", 
+            "details": str(e)
+        }), 500
 
-projects_df['search_text'] = projects_df['Title'] + " " + projects_df['Keywords']
-project_embeddings = embed_model.encode(projects_df['search_text'].tolist(), convert_to_tensor=True)
+# 2. مسار تسجيل الدخول (مؤقت لحين ربط جداول الطلاب والدكاترة)
+@app.route('/api/login', methods=['POST', 'OPTIONS'])
+def login():
+    if request.method == 'OPTIONS':
+        return jsonify({}), 200
 
-teachers_df['search_text'] = teachers_df['Specialization'] + " " + teachers_df['Expertise Keywords']
-teacher_embeddings = embed_model.encode(teachers_df['search_text'].tolist(), convert_to_tensor=True)
-
-chat_session = None
-
-# --- 2. THE API ENDPOINTS ---
-
-@app.route('/api/init_chat', methods=['POST'])
-def init_chat():
-    global chat_session
     data = request.json
-    major = data.get('major', 'IT')
-    interests = data.get('interests', 'General')
-    context_data = "" 
+    user_id = data.get('id')
+    password = data.get('password')
+    role = data.get('role')
 
-    query_text = f"{major} {interests}"
-    query_emb = embed_model.encode(query_text, convert_to_tensor=True)
-    proj_scores = util.cos_sim(query_emb, project_embeddings)[0]
-    top_indices = torch.topk(proj_scores, k=3).indices
+    # حسابات تجريبية للنظام
+    users_db = {
+        "student": {"id": "165555", "pass": "123456", "name": "Abdalluh Alsawalmeh", "initials": "AA"},
+        "doctor":  {"id": "1001", "pass": "123456", "name": "Dr. Deya Al-Zoubi", "initials": "DA"},
+        "admin":   {"id": "9001", "pass": "123456", "name": "Prof. Ahmad", "initials": "PA"}
+    }
 
-    for idx in top_indices:
-        p = projects_df.iloc[idx.item()]
-        p_emb = embed_model.encode(p['Keywords'], convert_to_tensor=True)
-        t_scores = util.cos_sim(p_emb, teacher_embeddings)[0]
-        teacher = teachers_df.iloc[torch.argmax(t_scores).item()]
-        context_data += f"- {p['Title']}. (For more help about this project, talk to: {teacher['Doctor Name']})\n"
+    if role in users_db:
+        v = users_db[role]
+        if user_id == v["id"] and password == v["pass"]:
+            return jsonify({
+                "status": "success", 
+                "user": {"name": v["name"], "initials": v["initials"]}
+            }), 200
 
-    instructions = f"You are the JUST University SGPMS Assistant. Student Major: {major}, Interest: {interests}. Data: {context_data}. Be concise and end with a question."
+    return jsonify({"status": "error", "message": "الرقم الجامعي أو كلمة السر خطأ"}), 401
 
-    try:
-        chat_session = model.start_chat(history=[])
-        response = chat_session.send_message(instructions)
-        return jsonify({"reply": response.text})
-    except Exception as e:
-        print(f"❌ Error in init: {e}")
-        return jsonify({"reply": "Connection issue. Please try again."}), 500
-
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    global chat_session
-    user_msg = request.json.get('message')
-    if chat_session is None:
-        return jsonify({"reply": "Session lost. Please refresh."}), 400
-    try:
-        response = chat_session.send_message(user_msg)
-        return jsonify({"reply": response.text})
-    except Exception as e:
-        print(f"❌ Error in chat: {e}")
-        return jsonify({"reply": "AI Error. Check terminal."}), 500
-
-# --- 3. THE STARTUP BLOCK (THIS IS WHAT YOU WERE MISSING) ---
 if __name__ == '__main__':
-    print("✅ SGPMS Backend Ready at http://127.0.0.1:5000")
-    app.run(port=5000, debug=True)
+    app.run(debug=True, port=5000)
