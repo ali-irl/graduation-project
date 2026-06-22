@@ -3,7 +3,7 @@ SMART GRADUATION PROJECT MANAGEMENT SYSTEM (SGPMS)
 ====================================================================
 
 --- SYSTEM OVERVIEW ---
-SGPMS is a containerized, portal designed to streamline 
+SGPMS is a containerized portal designed to streamline 
 the graduation project lifecycle. It features role-based access, 
 automated progress tracking, and an integrated AI assistant.
 
@@ -13,15 +13,24 @@ Before running the system, please ensure you have the following installed:
 2. A modern web browser (Chrome, Edge, or Safari)
 
 ====================================================================
- HOW TO RUN THE SYSTEM (3 SIMPLE STEPS)
+ HOW TO RUN THE SYSTEM (4 SIMPLE STEPS)
 ====================================================================
 
 STEP 1: Open Your Terminal
-Have your docker desktop running then Extract this project folder to your desktop. Open your Command Prompt 
-(Windows) or Terminal (Mac), and navigate inside the extracted folder .
+Ensure Docker Desktop is running. Extract this project folder to your 
+desktop. Open your Command Prompt (Windows) or Terminal (Mac), and 
+navigate inside the extracted folder.
 
-STEP 2: Start the Docker Environment
- Run the following command to automatically build the database, install 
+STEP 2: Configure Environment Variables (For AI Brainstorming)
+Before building the containers, you need to set up your local environment file:
+1. Locate the file named `.env.example` in the root folder.
+2. Duplicate or rename this file to exactly `.env`
+3. Open the `.env` file in a text editor and replace the placeholder text 
+   with your personal Google AI Studio Gemini API key that you can get from the Google AI studios website:
+   GEMINI_API_KEY=AIzaSy...
+
+STEP 3: Start the Docker Environment
+Run the following command to automatically build the database, install 
 dependencies, and start the backend servers:
 
 ======    docker-compose up --build   ===========
@@ -29,7 +38,7 @@ dependencies, and start the backend servers:
 Wait approximately 1-2 minutes until the terminal shows that both 
 ports (5000 and 5001) are actively running and listening.
 
-STEP 3: Launch the User Interface
+STEP 4: Launch the User Interface
 Once Docker is running, simply double-click the `project.html` file 
 located in this folder to open the platform in your web browser.
 
@@ -45,13 +54,11 @@ to evaluate the different interface roles.
    - Login ID: 9001
    - Password: 123456
 
-2. STUDENT ACCESS(*many students in the database but we use one as an example*)
+2. STUDENT ACCESS (*many students in the database but we use one as an example*)
    - Login ID: 160370
    - Password: 123456
 
-3. DOCTOR / SUPERVISOR ACCESS(*many doctors in the database but we use one as an example*)
+3. DOCTOR / SUPERVISOR ACCESS (*many doctors in the database but we use one as an example*)
    - Login ID: 16
    - Password: 123456
    - Access: View assigned groups, approve requests, and track progress.
-
-
