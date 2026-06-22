@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Service 1: Core Flask API & SQLite DB
+  sgpms-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app  
+      - sgpms_uploads_volume:/app/uploads
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # Service 2: Gemini AI Framework
+  sgpms-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai
+    ports:
+      - "5001:5001"
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+
+volumes:
+  sgpms_uploads_volume:
